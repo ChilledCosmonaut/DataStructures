@@ -3,4 +3,6 @@ project(RingBuffer C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(RingBuffer main.c)
+add_executable(RingBuffer main.c
+        RingBuffer.c
+        RingBuffer.h)
