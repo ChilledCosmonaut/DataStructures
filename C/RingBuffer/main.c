@@ -14,10 +14,10 @@ int main(void) {
     PrintStatistics(buffer);
     char* test = malloc(sizeof(char));
     PopData(buffer, test);
-    printf("%s\n", test);
     PrintStatistics(buffer);
+    printf("%s\n", test);
     DequeueData(buffer, test);
-    printf("%s\n", test);
     PrintStatistics(buffer);
+    printf("%s\n", test);
     return 0;
 }

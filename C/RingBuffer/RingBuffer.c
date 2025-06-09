@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-RingBuffer* CreateRingbuffer(long size) {
+RingBuffer* CreateRingbuffer(const long size) {
     RingBuffer* ringbuffer = malloc(sizeof(RingBuffer));
     ringbuffer->size = size;
     ringbuffer->head = 0;
@@ -13,21 +13,19 @@ RingBuffer* CreateRingbuffer(long size) {
 }
 
 void AddData(RingBuffer* buffer, const char* data) {
+    *(buffer->start + buffer->head) = *data;
     buffer->head++;
 
     if (buffer->head >= buffer->size) buffer->head = 0;
     if (buffer->head == buffer->tail) buffer->tail++;
-
-    *(buffer->start + buffer->head) = *data;
 }
 
 void PopData(RingBuffer* buffer, char* const DataSpot) {
     if (buffer->head == buffer->tail) return;
-
-    *DataSpot = *(buffer->start + buffer->head);
-
     if (buffer->head == 0) buffer->head = buffer->size;
+
     buffer->head--;
+    *DataSpot = *(buffer->start + buffer->head);
 }
 
 void DequeueData(RingBuffer* buffer, char* const DataSpot) {
